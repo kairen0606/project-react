@@ -13,11 +13,23 @@ const Register: React.FC = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
+    if (phone.length < 10 || phone.length > 11) {
+        alert("Please input a valid phone number!");
+    return;
+    }
+
+    const emailForm = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailForm.test(email)) {
+        alert("Please enter a valid email address.");
+    return;
+    }
+
     if (newPassword !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
     alert('Successful Registration!');
+    window.location.href = "/login";
   };
 
   return (
@@ -67,7 +79,8 @@ const Register: React.FC = () => {
               type="tel"
               placeholder="Phone Number"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))} 
+              pattern="[0-9]*"
               required
             />
           </div>
