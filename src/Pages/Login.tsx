@@ -1,27 +1,61 @@
-import React, { useState } from "react";
-
+import React, { useState, FormEvent } from "react";
+import { Link } from "react-router-dom";
+import "../CSS/Login.css";
 const Login: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    alert(`Logging in with Email: ${email}, Password: ${password}`);
+    alert(`Logging in with Email: ${email}, Password: ${password}, Remember Me: ${rememberMe}`);
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleSubmit}>
+        {/* Profile Icon */}
+        <div className="profile-icon">👤</div>
+
+        {/* Email */}
+        <div className="form-group">
+          <input
+            type="email"
+            placeholder="Username"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+
+        {/* Password */}
+        <div className="form-group">
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         </div>
-        <button type="submit">Login</button>
+
+        {/* Remember Me & Forgot Password */}
+        <div className="form-options">
+          <label>
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={() => setRememberMe(!rememberMe)}
+            />{" "}
+            Remember me
+          </label>
+          <Link to="#">Forgot password?</Link>
+        </div>
+
+        {/* Login Button */}
+        <button type="submit" className="login-btn">
+          LOGIN
+        </button>
       </form>
     </div>
   );
