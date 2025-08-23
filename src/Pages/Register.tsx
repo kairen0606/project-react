@@ -1,48 +1,108 @@
-import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import Login from "./Login";
+import React, { useState, FormEvent } from "react";
+import "../CSS/Register.css";
 
 const Register: React.FC = () => {
   const [username, setUsername] = useState("");
+  const [gender, setGender] = useState("");
+  const [dob, setDob] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
+    if (newPassword !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
-
-    alert(`Successful registration! You may now login!`);
+    alert('Successful Registration!');
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+    <div className="register-container">
+      <form className="register-form" onSubmit={handleSubmit}>
+
+        <label>Username</label>
+        <input
+          type="text"
+          placeholder="Enter Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+
+        <label>Gender</label>
+        <div className="gender-group">
+          <button
+            type="button"
+            className={gender === "male" ? "active" : ""}
+            onClick={() => setGender("male")}
+          >
+            ♂
+          </button>
+          <button
+            type="button"
+            className={gender === "female" ? "active" : ""}
+            onClick={() => setGender("female")}
+          >
+            ♀
+          </button>
         </div>
-        <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+
+        <div className="row">
+          <div>
+            <label>Date Of Birth</label>
+            <input
+              type="date"
+              value={dob}
+              onChange={(e) => setDob(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Phone Number</label>
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </div>
         </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <div>
-            <label>Confirm Password:</label>
-            <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
-        </div>
-        <button type="submit">Register</button>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-        </Routes>
+
+        <label>E-mail</label>
+        <input
+          type="email"
+          placeholder="E-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <label>New Password</label>
+        <input
+          type="password"
+          placeholder="********"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+          required
+        />
+
+        <label>Confirm Password</label>
+        <input
+          type="password"
+          placeholder="********"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+        />
+
+        <button type="submit" className="register-btn">
+          Register
+        </button>
       </form>
     </div>
   );
