@@ -1,12 +1,16 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState, FormEvent, useEffect } from "react";
 import "../CSS/Login.css";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  useEffect(() => {
+    document.title = "Login Page";
+  }, []);
+
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); 
 
     if (!email || !password) {
       alert("Please fill in all fields.");
@@ -21,11 +25,11 @@ const Login: React.FC = () => {
       <form className="login-form" onSubmit={handleSubmit}>
         
         <div className="form-group">
-          <label htmlFor="email">User Name</label>
+          <label htmlFor="email">Email</label>
           <input
             id="email"
             type="email"
-            placeholder="Enter User Name"
+            placeholder="Enter Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -48,11 +52,11 @@ const Login: React.FC = () => {
           <a href="/register" className="register-link">
             Register
           </a>
+
           <button type="submit" className="login-btn">
             Login
           </button>
         </div>
-
       </form>
     </div>
   );
