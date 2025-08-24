@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState, FormEvent, useEffect } from "react";
 import "../CSS/Register.css";
 
 const Register: React.FC = () => {
@@ -9,6 +9,10 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  useEffect(() => {
+    document.title = "Register Page";
+  }, []);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
