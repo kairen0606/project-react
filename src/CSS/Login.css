@@ -13,7 +13,9 @@
   border-radius: 8px;
   background-color: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .login-form label {
@@ -24,14 +26,19 @@
   font-size: 16px;
 }
 
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
 .form-group input {
   width: 100%;
   padding: 10px;
   border: 1px solid black;
   border-radius: 5px;
   font-size: 14px;
-  margin-bottom: 15px;
   font-family: "Times New Roman", Times, serif;
+  box-sizing: border-box; 
 }
 
 .form-actions {
@@ -50,7 +57,8 @@
 }
 
 .login-btn {
-  padding: 8px 20px;
+  width: 50%;
+  padding: 10px;
   border: none;
   border-radius: 8px;
   background-color: lightblue;
